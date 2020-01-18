@@ -1,0 +1,15 @@
+<!--ユーザー編集-->
+<h2>User info</h2>
+<%= form_for(@user) do |f|%>
+    <label>Name</label><!--名前-->
+    <%= f.text_field :name %>
+    <label>Image</label><!--画像投稿-->
+    <%= f.attachment_field :profile_image %><!--idなしでおけ-->
+    <label>Introduction</label><!--自己紹介-->
+    <%= f.text_area :introduction %>
+
+   <%= f.submit "Update User"%><!--投稿-->
+<% end %>
+
+ <!--画像投稿-->
+  <!--エラー設定まだ-->
