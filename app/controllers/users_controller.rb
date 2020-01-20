@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+#一覧,
   def index
+    @users = User.all
   end
 
   def show
-  	@user = User.find(params[:id])#ユーザのデータを1件取得してuserの説明に送る
+  	@user = User.find(params[:id])#ユーザのデータを1件取得してuserの説明.一覧に送る
   	@book = Book.new #booksコントローラーのからのフォームをuserに渡すために作ってる
   end
 
@@ -22,7 +24,7 @@ class UsersController < ApplicationController
         flash[:notice] = "You have updated user successfully."#成功メッセージ表示出るとこ決めてない
     else
         #戻るけどその前で情報取る指示してるのでrenderだけでいい
-        render :edit #editに戻る
+        render :edit #editに戻る。
 
     end
   end

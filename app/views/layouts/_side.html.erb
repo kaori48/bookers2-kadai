@@ -1,0 +1,31 @@
+<h2>User info</h2>
+ <!--画像表示するようにする-->
+<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "sample.jpg" %>
+ <table>
+   	<tbody>
+   	  <tr><th>name</th><th><%= user.name %></th></tr><!--railsなので％-->
+   	  <tr><th>introduction</th><th><%= user.introduction %></th></tr>
+   	</tbody>
+ </table>
+  <% if user.id == current_user.id %>
+    <div>
+    <%= link_to "プロフィール編集", edit_user_path(user) %>
+    </div>
+    <% end %>
+<!--ユーザー編集-->
+
+<!--フォーム-->
+<h2>New Book</h2>
+<%= form_for(book_new) do |f| %>
+  <div>
+  	<label>Title</label>
+  	<%= f.text_field :title %>
+  </div>
+  <div>
+  	<label>Opinion</label>
+  	<%= f.text_area :body%>
+  </div>
+  <div>
+  	<%= f.submit "Create Book"%>
+  </div>
+<% end %>
