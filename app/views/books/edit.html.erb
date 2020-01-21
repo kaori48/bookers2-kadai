@@ -1,5 +1,7 @@
 <!-- 編集-->
-<!-- 部分テンプレート-->
+<!-- エラー部分テンプレート-->
+<%= render "layouts/header" %>
+<%= render "layouts/error" %>
 <div>
 	<h1>Editing Book</h1>
 	<%= form_for @book do |f| %><!-- 編集対象のデータさんしょう-->
@@ -18,3 +20,4 @@
 </div>
 <%= link_to "Show", book_path(@book.id) %> | <!-- bookのshowにリンク-->
 <%= link_to "Back",books_path %> <!-- 全員の一覧へ戻る??リンクあってる？-->
+<%= render "layouts/footer" %>

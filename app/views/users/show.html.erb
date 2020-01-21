@@ -1,39 +1,9 @@
 <!--ログイン後一覧-->
+<%= render "layouts/header" %>
+<%= flash[:notice] %>
+<%= render "layouts/side", user: @user , book_new: @book %>
 
-<!--部分テンプレここから-->
-	<!--ヘッダー-->
-<!--ログインしてるユーザーの説明-->
-<h2>User info</h2>
- <!--画像表示するようにする-->
-<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "sample.jpg" %>
- <table>
-   	<tbody>
-   	  <tr><th>name</th><th><%= @user.name %></th></tr><!--railsなので％-->
-   	  <tr><th>introduction</th><th><%= @user.introduction %></th></tr>
-   	</tbody>
- </table>
-  <% if @user.id == current_user.id %>
-    <div>
-    <%= link_to "プロフィール編集", edit_user_path(@user) %>
-    </div>
-    <% end %>
-<!--ユーザー編集-->
 
-<!--フォーム-->
-<h2>New Book</h2>
-<%= form_for(@book) do |f| %>
-  <div>
-  	<label>Title</label>
-  	<%= f.text_field :title %>
-  </div>
-  <div>
-  	<label>Opinion</label>
-  	<%= f.text_area :body%>
-  </div>
-  <div>
-  	<%= f.submit "Create Book"%>
-  </div>
-<% end %>
 <!--部分テンプレ終了-->
 <!--投稿一覧-を作る-->
 <div>
@@ -55,5 +25,4 @@
     </tbody>
   </table>
 </div>
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= render "layouts/footer" %>

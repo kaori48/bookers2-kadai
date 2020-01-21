@@ -1,7 +1,6 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-<!--ユーザー一覧 -->
-div>
+<%= render "layouts/header" %>
+<%= render "layouts/side", book_new: @book_new, user: @user %>
+<!--ユーザ-ー-一覧  -->
 	<h2>Users</h2>
 	<table>
 		<thead>
@@ -13,10 +12,11 @@ div>
 		<tbody><!--全ユーザー一覧-->
 			<% @users.each do |user|%><!--ユーザーのイメージ, その人の投稿一覧-->
 			<tr>
-				<td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "sample.jpg" %></td>
-				<td><%=@user.name %></td><!--name -->
-				<td><%= link_to "show", user_path(@user.id) %></td><!--showボタンで(そのidの投稿一覧 -->
+				<td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "sample.jpg" %></td>
+				<td><%= user.name %></td><!--name -->
+				<td><%= link_to "show", user_path(user.id) %></td><!--showボタンで(そのidの投稿一覧 -->
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
+<%= render "layouts/footer" %>

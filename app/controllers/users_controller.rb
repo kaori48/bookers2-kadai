@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
-#一覧,
+  before_action :authenticate_user!#ログインしていないユーザーはログインページにリダイレクト
+#一覧
   def index
     @users = User.all
+    @book_new = Book.new
+    @user = current_user
   end
 
   def show
@@ -17,11 +20,10 @@ class UsersController < ApplicationController
   end
 #ユーザー編集をする、
   def update
-  	user = User.find(params[:id])#params[:id]でユーザの情報を取得してインスタンス（@user）に保存し、編集用Viewでform_forを使う準備をしています。
-    if
-        user.update(user_params)#アップデート
-        redirect_to user_path(user)#ユーザーのshowへリダイレクト
-        flash[:notice] = "You have updated user successfully."#成功メッセージ表示出るとこ決めてない
+  	@user = User.find(params[:id])#params[:id]でユーザの情報を取得してインスタンス（@user）に保存し、編集用Viewでform_forを使う準備をしています。
+    if @user.update(user_params)#アップデート
+        flash[:notice] = "You have updated user successfully."#成功メッセージ
+        redirect_to user_path(@user)#ユーザーのshowへリダイレクト
     else
         #戻るけどその前で情報取る指示してるのでrenderだけでいい
         render :edit #editに戻る。

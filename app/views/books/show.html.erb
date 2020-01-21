@@ -1,9 +1,9 @@
 <!--自分の投稿詳細-->
-<!-- destroyボタン消して他のひとが詳細見るときに使う？-->
 
-<!--エラーまだ -->
-<!--部分テンプレサイド-->
-<%= render "layouts/side", user: @user, book_new: @book_new %>
+<!--エラーサクセスまだ -->
+<%= render "layouts/header" %>
+<%= flash[:notice] %>
+<%= render "layouts/side", user: @book.user, book_new: @book_new %>
 <!--投稿した内容の詳細一つ-->
 <div>
 	<h2>Book detail</h2>
@@ -13,19 +13,18 @@
 		</thead>
 		<tbody><!-- ユーザーの投稿一件詳細-->
 			<tr>
-				<td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40,  fallback: "sample.jpg" %>
+				<td><%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40,  fallback: "sample.jpg" %>
 				    <br>
-				    <%= link_to @user.name, user_path(@user.id)%><!--ユーザーのイメージ,名前 アイコン押すとユーザーの投稿一覧??-->
+				    <%= link_to @book.user.name, user_path(@book.user.id)%><!--ユーザーのイメージ,名前 アイコン押すとユーザーの投稿一覧??-->
 				</td>
 				<td><%= @book.title %></td><!--タイトル -->
 				<td><%= @book.body %></td><!--感想 -->
 				<!--ログインしてる人の時だけボタンが出るように-->
 				<% if @book.user == current_user %>
 				  <td><%= link_to "EDIT",edit_book_path(@book) %></td><!--editボタン -->
-				  <td><%= link_to "DESTROY",book_path(@book), method: :delete %></td><!--destroy -->
+				  <td><%= link_to "DESTROY",book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"} %></td><!--destroy -->
 				<% end %>
 			</tr>
 		</tbody>
 	</table>
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<%= render "layouts/footer" %>

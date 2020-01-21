@@ -1,6 +1,6 @@
 
-<!--部分テンプレート -->
-<!--部分テンプレートエラー -->
+<%= render "layouts/header" %>
+<%= render "layouts/error" %>
 <!--全員のbookの感想 -->
 <%= render "layouts/side", user: current_user, book_new: @book_new %>
 <div>
@@ -17,7 +17,7 @@
 		<tbody><!-- 全ユーザーbook一覧-->
 			<% @books.each do |book|%><!--eachdo -->
 			<tr>
-				<td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40,  fallback: "sample.jpg" %></td><!--ユーザーのイメージをusershowにリンクまだ-->
+				<td><%= attachment_image_tag book.user, :profile_image, :fill, 40, 40,  fallback: "sample.jpg" %></td><!--ユーザーのイメージをusershowにリンクまだ-->
 				<td><%= link_to book.title, book_path(book.id) %></td> <!--タイトル,そのidのbookshowへ（book.id） -->
 				<td><%= book.body %></td><!--感想表示 -->
 			</tr>
@@ -25,5 +25,4 @@
 		</tbody>
 	</table>
 <h1>
-Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<%= render "layouts/footer" %>

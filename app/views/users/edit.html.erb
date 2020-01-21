@@ -1,4 +1,15 @@
+<%= render "layouts/header" %>
 <!--ユーザー編集-->
+<% if @user.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h2>User info</h2>
 <%= form_for(@user) do |f|%>
     <label>Name</label><!--名前-->
@@ -10,6 +21,7 @@
 
    <%= f.submit "Update User"%><!--投稿-->
 <% end %>
+<%= render "layouts/footer" %>
 
  <!--画像投稿-->
   <!--エラー設定まだ-->
