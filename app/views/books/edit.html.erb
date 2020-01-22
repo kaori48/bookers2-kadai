@@ -1,7 +1,7 @@
 <!-- 編集-->
 <!-- エラー部分テンプレート-->
 <%= render "layouts/header" %>
-<%= render "layouts/error" %>
+<%= render "layouts/error", book_new: @book %>
 <div>
 	<h1>Editing Book</h1>
 	<%= form_for @book do |f| %><!-- 編集対象のデータさんしょう-->

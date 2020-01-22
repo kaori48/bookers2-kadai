@@ -1,7 +1,8 @@
 <%= render "layouts/header" %>
 <!--ユーザー編集-->
 <% if @user.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
+  <div>
+    <h3><%= @user.errors.count %> errors prohibited this obj from being saved:</h3>
     <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>

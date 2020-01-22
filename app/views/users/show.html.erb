@@ -1,5 +1,6 @@
 <!--ログイン後一覧-->
 <%= render "layouts/header" %>
+<%= render "layouts/error", book_new: @book %>
 <%= flash[:notice] %>
 <%= render "layouts/side", user: @user , book_new: @book %>
 

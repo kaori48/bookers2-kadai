@@ -1,7 +1,7 @@
 <!--自分の投稿詳細-->
 
-<!--エラーサクセスまだ -->
 <%= render "layouts/header" %>
+<%= render "layouts/error", book_new: @book_new %>
 <%= flash[:notice] %>
 <%= render "layouts/side", user: @book.user, book_new: @book_new %>
 <!--投稿した内容の詳細一つ-->
@@ -21,8 +21,8 @@
 				<td><%= @book.body %></td><!--感想 -->
 				<!--ログインしてる人の時だけボタンが出るように-->
 				<% if @book.user == current_user %>
-				  <td><%= link_to "EDIT",edit_book_path(@book) %></td><!--editボタン -->
-				  <td><%= link_to "DESTROY",book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"} %></td><!--destroy -->
+				  <td><%= link_to "Edit",edit_book_path(@book) %></td><!--editボタン -->
+				  <td><%= link_to "Destroy",book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"} %></td><!--destroy -->
 				<% end %>
 			</tr>
 		</tbody>

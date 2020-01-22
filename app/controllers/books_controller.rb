@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!#ログインしていない、ユーザーはログインページにリダイレクト
+  before_action :ensure_correct_user, only: [:edit, :update]
 #本いちらん
   def index
     @books = Book.all
@@ -33,7 +34,7 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id])
   end
-# 更新失敗したとき
+# 更新
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
@@ -48,6 +49,13 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path#booksのindex
+  end
+#編集制限
+  def ensure_correct_user
+    @book = Book.find(params[:id])
+    if @book.user != current_user #関連付けしてるとこからuser持ってくる？
+      redirect_to books_path#どこに戻すかわからない、一覧？
+    end
   end
 
   private#投稿データの保存のストロングパラメータ

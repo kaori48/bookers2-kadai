@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!#ログインしていないユーザーはログインページにリダイレクト
+  before_action :ensure_correct_user, only: [:edit, :update]
 #一覧
   def index
     @users = User.all
@@ -28,6 +29,13 @@ class UsersController < ApplicationController
         #戻るけどその前で情報取る指示してるのでrenderだけでいい
         render :edit #editに戻る。
 
+    end
+  end
+#ログイン制限
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to user_path(current_user)#ログインゆーざのuserのshowへ
     end
   end
 
