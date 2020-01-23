@@ -1,9 +1,16 @@
 <%= render "layouts/header" %>
+<div class="container">
 <%= render "layouts/error", book_new: @book_new %>
+<div class="row">
+<div class="col-xs-3">
 <%= render "layouts/side", book_new: @book_new, user: @user %>
+</div>
 <!--ユーザ-ー-一覧  -->
+<div class="col-xs-9">
 	<h2>Users</h2>
-	<table>
+<div class="conrainer">
+ <div class="row">
+	<table class="table table-hover table-inverse table-striped">
 		<thead>
            <tr>
            	 	<th>image</th>
@@ -13,11 +20,16 @@
 		<tbody><!--全ユーザー一覧-->
 			<% @users.each do |user|%><!--ユーザーのイメージ, その人の投稿一覧-->
 			<tr>
-				<td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "sample.jpg" %></td>
+				<td><%= attachment_image_tag user, :profile_image, size: "40x40", format: 'jpeg', fallback: "sample.jpg" %></td>
 				<td><%= user.name %></td><!--name -->
 				<td><%= link_to "Show", user_path(user.id) %></td><!--showボタンで(そのidの投稿一覧 -->
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
+  </div>
+ </div>
+ </div>
+  </div>
+ </div>
 <%= render "layouts/footer" %>

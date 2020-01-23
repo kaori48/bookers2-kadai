@@ -1,11 +1,15 @@
 
 <%= render "layouts/header" %>
+<div class="container">
 <%= render "layouts/error", book_new: @book_new %>
 <!--全員のbookの感想 -->
+<div class="row">
+<div class="col-xs-3">
 <%= render "layouts/side", user: current_user, book_new: @book_new %>
-<div>
+</div>
+<div class="col-xs-9">
 	<h2>Books</h2>
-	<table>
+	<table class="table">
 		<thead>
            <tr>
            	 <tr>
@@ -19,7 +23,7 @@
 			<tr>
 				<td>
 					<%= link_to user_path(book.user.id) do %>
-					<%= attachment_image_tag book.user, :profile_image, :fill, 40, 40,  fallback: "sample.jpg" %>
+					<%= attachment_image_tag book.user, :profile_image, size: "40x40", fallback: "sample.jpg" %>
 					<!--ユーザーのイメージをusershowにリンクまだ-->
 					<% end %>
 				</td>
@@ -29,5 +33,6 @@
 			<% end %>
 		</tbody>
 	</table>
-<h1>
+	</div>
+</div>
 <%= render "layouts/footer" %>

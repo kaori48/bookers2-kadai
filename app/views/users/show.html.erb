@@ -1,29 +1,39 @@
+
 <!--ログイン後一覧-->
 <%= render "layouts/header" %>
-<%= render "layouts/error", book_new: @book %>
-<%= flash[:notice] %>
-<%= render "layouts/side", user: @user , book_new: @book %>
+<div class="container">
+  <div class="row">
+  <%= render "layouts/error", book_new: @book %>
+  <%= flash[:notice] %>
+   <div class="col-xs-3">
+    <%= render "layouts/side", user: @user , book_new: @book %>
+   </div>
 
 
 <!--部分テンプレ終了-->
 <!--投稿一覧-を作る-->
-<div>
-  <h2>Books</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th><th>Opinion</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @user.books.each do |book| %><!--userに紐ついているbookテーブルを所得-->
-      <tr>
-        <td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "sample.jpg" %></td>
-        <td><%= link_to book.title, book_path(book.id) %></td><!--うえでどこから取るか指定しているので＠userなしタイトルをshowへ-->
-        <td><%= book.body %></td><!--opinion-->
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="col-xs-9">
+    <h2>Books</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th><th>Opinion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.books.each do |book| %><!--userに紐ついているbookテーブルを所得-->
+        <tr>
+          <td><%= attachment_image_tag @user, :profile_image, size: "40x40", format: 'jpeg', fallback: "sample.jpg" %></td>
+          <td><%= link_to book.title, book_path(book.id) %></td><!--うえでどこから取るか指定しているので＠userなしタイトルをshowへ-->
+          <td><%= book.body %></td><!--opinion-->
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
+</div>
+
+
+
 <%= render "layouts/footer" %>

@@ -1,13 +1,17 @@
 <!--自分の投稿詳細-->
 
 <%= render "layouts/header" %>
+<div class="container">
 <%= render "layouts/error", book_new: @book_new %>
 <%= flash[:notice] %>
+<div class="row">
+<div class="col-xs-3">
 <%= render "layouts/side", user: @book.user, book_new: @book_new %>
+</div>
 <!--投稿した内容の詳細一つ-->
-<div>
+<div class="col-xs-9">
 	<h2>Book detail</h2>
-	<table>
+	<table class="table">
 		<thead>
            <tr></tr><!--ヘッダーなし -->
 		</thead>
@@ -21,10 +25,18 @@
 				<td><%= @book.body %></td><!--感想 -->
 				<!--ログインしてる人の時だけボタンが出るように-->
 				<% if @book.user == current_user %>
-				  <td><%= link_to "Edit",edit_book_path(@book) %></td><!--editボタン -->
-				  <td><%= link_to "Destroy",book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"} %></td><!--destroy -->
+				  <td><%= link_to edit_book_path(@book),class: "btn btn-success" do %>
+				  	    <span>Edit</span>
+				  	  <% end %>
+				  </td>
+				  <td><%= link_to book_path(@book), class: "btn btn-danger",method: :delete, data: {confirm: "本当に消しますか？"} do %>
+				  	  <span>Destroy</span>
+				  	  <% end %>
+				  </td><!--destroy -->
 				<% end %>
 			</tr>
 		</tbody>
 	</table>
+	</div>
+</div>
 <%= render "layouts/footer" %>
