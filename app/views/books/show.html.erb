@@ -3,7 +3,6 @@
 <%= render "layouts/header" %>
 <div class="container">
 <%= render "layouts/error", book_new: @book_new %>
-<%= flash[:notice] %>
 <div class="row">
 <div class="col-xs-3">
 <%= render "layouts/side", user: @book.user, book_new: @book_new %>
